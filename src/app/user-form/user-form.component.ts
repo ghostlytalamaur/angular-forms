@@ -38,7 +38,11 @@ export class UserFormComponent implements OnInit {
   public ngOnInit(): void {
   }
 
-  public onDisableControl(control: FormControl): void {
+  public onDisableControl(control: AbstractControl | null): void {
+    if (!control) {
+      return;
+    }
+
     if (control.disabled) {
       control.enable();
     } else {
