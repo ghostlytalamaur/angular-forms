@@ -1,0 +1,25 @@
+<form [formGroup]="form">
+  <div formGroupName="user">
+    <h4>Inline form group</h4>
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" />
+    </mat-form-field>
+  </div>
+
+  <h4>Custom form control which works with reactive and template-drive forms</h4>
+  <app-address-form formControlName="address"></app-address-form>
+</form>
+
+<button mat-raised-button (click)="onDisableControl(form)">{{ form.disabled ? 'Enable form' : 'Disable form' }}</button>
+<button mat-raised-button (click)="onDisableControl(form.get('address'))">{{ form.get('address')?.disabled ? 'Enable address' : 'Disable address' }}</button>
+
+<div>form.value: {{ form.value | json }}</div>
+<div>form.status: {{ form.status }}</div>
+<div>firstName.errors: {{ form.get('user.firstName')?.errors | json }}</div>
+<div>address.errors: {{ form.get('address')?.errors | json }}</div>
